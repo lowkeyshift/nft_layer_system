@@ -1,0 +1,29 @@
+{
+    "assets": {
+        "rootpath": "./assets/",
+        "ending_dimensions": {
+            "length": 500,
+            "width": 500
+        },
+        "anchor": {
+            "variations": 2,
+            "subdir": "backgrounds",
+            "image_names": ["red","rome"],
+            "format": "png",
+            "weight": [70, 30]
+        },
+        "layer1": {
+            "variations": 2,
+            "subdir": "character",
+            "image_names": ["men","women"],
+            "format": "png",
+            "weight": [80, 20]
+        },
+        "layer2": {
+            "variations": 3,
+            "image_names": ["round-rim","subglasses","thick-rim"],
+            "format": "png",
+            "weight": [70, 10, 20]
+        }
+    }
+}
