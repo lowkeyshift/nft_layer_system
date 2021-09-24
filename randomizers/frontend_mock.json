@@ -8,22 +8,22 @@
         "anchor": {
             "variations": 2,
             "subdir": "backgrounds",
-            "image_names": ["red","rome"],
+            "image_names": ["red","rome", "2ndRed", "2ndRome"],
             "format": "png",
-            "weight": [70, 30]
+            "weight": [40, 40, 40, 20]
         },
         "layer1": {
             "variations": 2,
             "subdir": "character",
             "image_names": ["men","women"],
             "format": "png",
-            "weight": [80, 20]
+            "weight": [20, 80]
         },
         "layer2": {
             "variations": 3,
             "image_names": ["round-rim","subglasses","thick-rim"],
             "format": "png",
-            "weight": [70, 10, 20]
+            "weight": [40, 30, 30]
         }
     }
 }
