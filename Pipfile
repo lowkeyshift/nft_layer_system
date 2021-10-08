@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-boto3 = "*"
 python-dotenv = "*"
+boto3 = "*"
+pillow = "*"
 
 [dev-packages]
 

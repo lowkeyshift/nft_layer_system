@@ -3,15 +3,9 @@ import json
 import ast
 import os
 from itertools import product
-from itertools import combinations
-from itertools import permutations
-from dotenv import load_dotenv
 import threading
 
-load_dotenv()
-do_endpoint = os.getenv("do_spaces_endpoint")
-do_key = os.getenv("do_spaces_key")
-do_secret = os.getenv("do_spaces_secret")
+
 cwd = os.getcwd()
 
 class MetaDataGen():
