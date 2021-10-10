@@ -37,6 +37,14 @@ class ImageStorage():
         self.project_id = project_id
         self.full_path = f"{main_dir}{user_id}/{project_id}/"
 
+    def created_user_dir(self):
+        isExist = os.path.exists(self.full_path)
+
+        if not isExist:
+            # Create user dir if it does not exist
+            os.makedirs(self.full_path)
+            print(f"{self.user_id}'s directory was created at {self.full_path}")
+
     def find_user_dir_by_id(self):
         pass
     
@@ -47,35 +55,14 @@ class ImageStorage():
         return project
 
     def download_user_project(self):
+        contents = self.client.list_objects_v2(Bucket=self.bucket, Prefix=self.full_path)
+        for obj in contents:
+            if not os.path.exists(os.path.dirname(obj.key)):
+                os.makedirs(os.path.dirname(obj.key))
+            contents.download_file(obj.key, obj.key)
+    def upload_nft_images(self):
         pass
 
 IS = ImageStorage(client, bucket, user_id, main_dir, "project1")
-print(IS.list_all_user_projects())
-
-
-# search for user id and project 
-# prefix = f"{main_dir}/{user_id}"
-# user_subdir = client.list_objects_v2(Bucket=spaces[0], Prefix=prefix, Delimiter='/')
-# print(user_subdir)
-
-
-# with open(f"{cwd}/randomizers/frontend_mock.json", "r") as js:
-#     jsonFile = js.read()
-#     json_data = json.loads(jsonFile)
-#     anchors = json_data["assets"]["anchor"]
-#     layer1 = json_data["assets"]["layer1"]
-#     layer2 = json_data["assets"]["layer2"]
-#     mdg = MetaDataGen("AppTestUserName", anchors, layer1, layer2)
-#     total_images = mdg.total_combinations()
-#     all_images = mdg.imageObjs(total_images)
-#     js.close()
-# if mdg.all_images_unique(all_images) == True:
-#     mdg.tokenId()
-#     mdg.write_to_file()
-#     print("Success: All Unique")
-# else:
-#     print("Not 100% unqiue")
-
-# with open(f"{cwd}/nft_image_metadata/AppTestUserName", "r") as js:
-#     jsonFile = js.read()
-#     json_data = json.loads(jsonFile)
+# IS.created_user_dir()
+IS.download_user_project()

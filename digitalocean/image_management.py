@@ -1,10 +1,8 @@
 import boto3
 import os
-import random
 import json
 from dotenv import load_dotenv
 from botocore.client import Config
-
 
 # To be determined.
 # Testing block
@@ -16,6 +14,9 @@ do_region = os.getenv("do_spaces_region")
 do_key = os.getenv("do_spaces_key")
 do_secret = os.getenv("do_spaces_secret")
 
+user_id = "01284729137"
+main_dir = "image_generator/"
+bucket = "01whimsy-storeage-space"
 # Initialize a session using DigitalOcean Spaces.
 session = boto3.session.Session()
 client = session.client('s3',
@@ -23,15 +24,37 @@ client = session.client('s3',
                         endpoint_url=do_endpoint,
                         aws_access_key_id=do_key,
                         aws_secret_access_key=do_secret)
+class ImageStorage():
 
-# List all buckets on your account.
-response = client.list_buckets()
-spaces = [space['Name'] for space in response['Buckets']]
-print("Spaces List: %s" % spaces)
+    def __init__(self, client, bucket, user_id, main_dir, project_id):
+        self.client = client
+        self.bucket = bucket
+        self.user_id = user_id
+        self.main_dir = main_dir
+        self.project_id = project_id
+        self.full_path = f"{main_dir}{user_id}/{project_id}/"
 
-# Get Bucket Contents
-contents = client.list_objects_v2(Bucket=spaces[0])
-directory = [directory['Key'] for directory in contents['Contents']]
-if 'image_generator/' in directory:
-    num_dex = directory.index("image_generator/")
-    print("Spaces Files: %s" % directory[num_dex])
+    def created_user_dir(self):
+        isExist = os.path.exists(self.full_path)
+
+        if not isExist:
+            # Create user dir if it does not exist
+            os.makedirs(self.full_path)
+            print(f"{self.user_id}'s directory was created at {self.full_path}")
+
+    def find_user_dir_by_id(self):
+        pass
+    
+    def list_all_user_projects(self):
+        # Get user 
+        contents = self.client.list_objects_v2(Bucket=self.bucket, Prefix=self.full_path)
+        project = [directory['Key'] for directory in contents['Contents']]
+        return project
+
+    def download_user_project(self):
+        pass
+    def upload_nft_images(self):
+        pass
+
+IS = ImageStorage(client, bucket, user_id, main_dir, "project1")
+print(IS.list_all_user_projects())
