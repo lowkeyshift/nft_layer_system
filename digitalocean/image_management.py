@@ -1,7 +1,10 @@
 import boto3
-import os
+import glob, os
+import random
 import json
+from PIL import Image
 from dotenv import load_dotenv
+from randomizers.data_randomizer import MetaDataGen
 from botocore.client import Config
 
 # To be determined.
@@ -24,26 +27,22 @@ client = session.client('s3',
                         endpoint_url=do_endpoint,
                         aws_access_key_id=do_key,
                         aws_secret_access_key=do_secret)
+resource = boto3.resource('s3',
+                        region_name='nyc3',
+                        endpoint_url=do_endpoint,
+                        aws_access_key_id=do_key,
+                        aws_secret_access_key=do_secret)
 class ImageStorage():
 
-    def __init__(self, client, bucket, user_id, main_dir, project_id):
+    def __init__(self, client, resource, bucket, user_id, main_dir, project_id):
         self.client = client
+        self.resource = resource
         self.bucket = bucket
         self.user_id = user_id
         self.main_dir = main_dir
         self.project_id = project_id
         self.full_path = f"{main_dir}{user_id}/{project_id}/"
-
-    def created_user_dir(self):
-        isExist = os.path.exists(self.full_path)
-
-        if not isExist:
-            # Create user dir if it does not exist
-            os.makedirs(self.full_path)
-            print(f"{self.user_id}'s directory was created at {self.full_path}")
-
-    def find_user_dir_by_id(self):
-        pass
+        self.user_path = f"{main_dir}{user_id}/"
     
     def list_all_user_projects(self):
         # Get user 
@@ -52,9 +51,15 @@ class ImageStorage():
         return project
 
     def download_user_project(self):
-        pass
+        contents = self.resource.Bucket(self.bucket)
+        for obj in contents.objects.filter(Prefix=self.full_path):
+            if not os.path.exists(os.path.dirname(obj.key)):
+                os.makedirs(os.path.dirname(obj.key))
+            if not os.path.isdir(obj.key):
+                contents.download_file(obj.key, obj.key)
+
     def upload_nft_images(self):
         pass
 
-IS = ImageStorage(client, bucket, user_id, main_dir, "project1")
-print(IS.list_all_user_projects())
+IS = ImageStorage(client, resource, bucket, user_id, main_dir, "project1")
+IS.download_user_project()

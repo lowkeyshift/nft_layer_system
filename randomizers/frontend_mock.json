@@ -6,7 +6,7 @@
             "width": 500
         },
         "anchor": {
-            "variations": 2,
+            "variations": 4,
             "subdir": "backgrounds",
             "image_names": ["red","rome", "2ndRed", "2ndRome"],
             "format": "png",
