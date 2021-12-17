@@ -1,0 +1,37 @@
+{
+    "721": {
+        "abcd": {
+            "TestSeries0": {
+                "name": "TestSeries #0",
+                "series": "Test",
+                "twitter": "https://www.twitter.com",
+                "tags": [
+                    "600_600_female",
+                    "600_600_pink",
+                    "600_600_round_rim"
+                ]
+            },
+            "TestSeries1": {
+                "name": "TestSeries #1",
+                "series": "Test",
+                "twitter": "https://www.twitter.com",
+                "tags": [
+                    "600_600_male_scarf",
+                    "600_600_orange",
+                    "sunglasses"
+                ]
+            },
+            "TestSeries2": {
+                "name": "TestSeries #2",
+                "series": "Test",
+                "twitter": "https://www.twitter.com",
+                "tags": [
+                    "600_600_male_scarf",
+                    "600_600_green",
+                    "600_600_round_rim",
+                    "big_mouth"
+                ]
+            }
+        }
+    }
+}
