@@ -43,7 +43,7 @@ def load_metadata_file(user):
     with open(f"./nft_image_metadata/{user}_image_list.json", "r") as file:
         return (json.load(file))
     
-with open(f"randomizers/test.json", "r") as file:
+with open(f"test.json", "r") as file:
     data = json.load(file)
 generate_nfts(data)
 
