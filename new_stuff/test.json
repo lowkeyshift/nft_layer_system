@@ -1,37 +1,55 @@
 {
-    "721": {
-        "abcd": {
-            "TestSeries0": {
-                "name": "TestSeries #0",
-                "series": "Test",
-                "twitter": "https://www.twitter.com",
-                "tags": [
-                    "600_600_female",
-                    "600_600_pink",
-                    "600_600_round_rim"
-                ]
-            },
-            "TestSeries1": {
-                "name": "TestSeries #1",
-                "series": "Test",
-                "twitter": "https://www.twitter.com",
-                "tags": [
-                    "600_600_male_scarf",
-                    "600_600_orange",
-                    "sunglasses"
-                ]
-            },
-            "TestSeries2": {
-                "name": "TestSeries #2",
-                "series": "Test",
-                "twitter": "https://www.twitter.com",
-                "tags": [
-                    "600_600_male_scarf",
-                    "600_600_green",
-                    "600_600_round_rim",
-                    "big_mouth"
-                ]
-            }
+	"general": {
+		"user": "testUser",
+		"policyId": "abcd",
+		"amount": 100
+		
+	},
+		"metadata": {
+		"name": "TestSeries",
+		"series": "Test",
+		"twitter": "https://www.twitter.com"
+	},
+    "assets": {
+        "rootpath": "./assets",
+        "ending_dimensions": {
+            "length": 500,
+            "width": 500
+        },
+        "anchors": {
+            "variations": 2,
+            "subdir": "anchors",
+            "image_names": ["600_600_female", "600_600_male_scarf"],
+            "format": "png",
+            "weight": [50, 50]
+        },
+		"backgrounds":{
+			"variations": 6,
+            "subdir": "backgrounds",
+            "image_names": ["600_600_cyan", "600_600_green", "600_600_orange", "600_600_pink", "600_600_purple", "600_600_stars"],
+            "format": "png",
+            "weight": [19, 19, 19, 19, 19, 5]
+		},
+        "layer1": {
+            "variations": 3,
+            "subdir": "eyes",
+            "image_names": ["600_600_anime_eyes", "600_600_round_rim", "sunglasses"],
+            "format": "png",
+            "weight": [10, 30, 60]
+        },
+        "layer2": {
+            "variations": 2,
+			"subdir": "face",
+            "image_names": ["600_600_scars", null],
+            "format": "png",
+            "weight": [10, 90]
+        },
+		"layer3": {
+            "variations": 2,
+			"subdir": "mouth",
+            "image_names": ["big_mouth", null],
+            "format": "png",
+            "weight": [80, 20]
         }
     }
 }
